@@ -21,33 +21,48 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
       crossorigin="anonymous"
     ></script>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
     <header>Weather Dashboard</header>
 
     <div class="container">
-        <div class="row">
-            <div class="col-3">
-                <h3>Search for a city:</h3>
-                <div class="row">
-                  <input id="search" type="text"><img id="searchBtn" class="icon" src="assets/images/search.png">
-                </div>
-                <div id="searchHistory">
-                    <div class="searchHist" id="hist1"></div>
-                    <div class="searchHist" id="hist2"></div>
-                    <div class="searchHist" id="hist3"></div>
-                    <div class="searchHist" id="hist4"></div>
-                    <div class="searchHist" id="hist5"></div>
-                    <div class="searchHist" id="hist6"></div>
-                </div>
-            </div>
-            <div class="col-9"></div>
+      <div class="row">
+        <div class="col-3">
+          <h3>Search for a city:</h3>
+          <div class="row">
+            <input id="search" type="text" /><img
+              id="searchBtn"
+              class="icon"
+              src="assets/images/search.png"
+            />
+          </div>
+          <div id="searchHistory">
+            <div class="searchHist" id="hist1"></div>
+            <div class="searchHist" id="hist2"></div>
+            <div class="searchHist" id="hist3"></div>
+            <div class="searchHist" id="hist4"></div>
+            <div class="searchHist" id="hist5"></div>
+            <div class="searchHist" id="hist6"></div>
+          </div>
         </div>
+        <div class="col-9">
+          <div class="row mainElement" id="current">
+            <div class="col-12">
+              <div id="cityDisplay"></div>
+              <div class="mainTxt" id="temp"></div>
+              <div class="mainTxt" id="humidity"></div>
+              <div class="mainTxt" id="windSpeed"></div>
+              <div class="mainTxt" id="uvIndex"></div>
+            </div>
+          </div>
+
+          <div class="row" id="forecast"></div>
+        </div>
+      </div>
     </div>
 
-
-<script src="script.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>

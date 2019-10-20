@@ -26,14 +26,35 @@ input {
 }
 
 .searchHist {
+    border-radius: 4px;
+    font-weight: bold;
+    color: silver;
     height: 45px;
     position: relative;
     right: 40px;
     background: royalblue;
-    margin-top: 20px;
+    margin-top: 3px;
     padding: 10px;
+    padding-left: 20px;
 }
 
 #searchHistory {
     padding: 20px;
+}
+
+#cityDisplay {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.mainTxt {
+    font-size: 22px;
+    padding: 10px;
+}
+
+.mainElement {
+    padding: 30px;
+    border: 2px solid rgb(155, 176, 240);
+    border-radius: 6px;
 }
