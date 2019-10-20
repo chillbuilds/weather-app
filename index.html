@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Document</title>
+    <title>Weather App</title>
     <script
       src="https://code.jquery.com/jquery-3.4.1.js"
       integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
@@ -24,10 +24,29 @@
     <link rel="stylesheet" href="styles.css">
   </head>
 
-
-
   <body>
-    <div class="headly">Hey, yo</div>
+    <header>Weather Dashboard</header>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-3">
+                <h3>Search for a city:</h3>
+                <div class="row">
+                  <input id="search" type="text"><img id="searchBtn" class="icon" src="assets/images/search.png">
+                </div>
+                <div id="searchHistory">
+                    <div class="searchHist" id="hist1"></div>
+                    <div class="searchHist" id="hist2"></div>
+                    <div class="searchHist" id="hist3"></div>
+                    <div class="searchHist" id="hist4"></div>
+                    <div class="searchHist" id="hist5"></div>
+                    <div class="searchHist" id="hist6"></div>
+                </div>
+            </div>
+            <div class="col-9"></div>
+        </div>
+    </div>
+
 
 <script src="script.js"></script>
   </body>
