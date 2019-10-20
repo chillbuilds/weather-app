@@ -66,5 +66,19 @@ input {
 #indexHolder {
     float: left;
     border-radius: 4px;
+}
+
+.forecastTile {
+   margin: 5px;
+   margin-top: 20px;
+    float: left;
+    padding: 20px;
+    position: relative;
     background: royalblue;
+    width: 18.8%;
+    border-radius: 6px;
+}
+
+#forecastTiles {
+    padding: 0px;
 }
