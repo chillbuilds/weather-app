@@ -3,7 +3,6 @@ var APIKey = "8bebd070f80dace3c5498124f468dc36";
 var latitude = 0;
 var longitude = 0;
 
-
 $("#hist1").text(JSON.parse(localStorage.getItem("2")));
 $("#hist2").text(JSON.parse(localStorage.getItem("3")));
 $("#hist3").text(JSON.parse(localStorage.getItem("4")));
@@ -21,13 +20,16 @@ function cityCall(){
       .then(function(response) {
           var x = response;
           var tempF = Math.round(x.main.temp*9/5-459.67);
-          $("#cityDisplay").text(cityInput);
+          var str = moment().format("");
+          var y = str.split("T");
+          $("#cityDisplay").text(cityInput + " " + y[0]);
           $("#temp").text("Temp: " + tempF + "°f");
           $("#humidity").text("Humidity: " + x.main.humidity + "%")
           $("#windSpeed").text("Wind Speed: " + x.wind.speed.toFixed(1) + " mph")
           lat = x.coord.lat;
           lon = x.coord.lon;
           uvCall();
+          console.log(y);
 })}
 
 function uvCall(){
@@ -38,7 +40,10 @@ function uvCall(){
     method: "GET"
   })
   .then(function(response) {
-        $("#uvIndex").text("UV Index: " + response.value.toFixed(1));
+      var x = response.value.toFixed(1)
+        $("#uvIndex").text("UV Index: ");
+        $("#indexHolder").text(x);
+        // if()
   })
 }
 

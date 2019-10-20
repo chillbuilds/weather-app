@@ -58,3 +58,13 @@ input {
     border: 2px solid rgb(155, 176, 240);
     border-radius: 6px;
 }
+
+#uvIndex {
+    float: left;
+}
+
+#indexHolder {
+    float: left;
+    border-radius: 4px;
+    background: royalblue;
+}
