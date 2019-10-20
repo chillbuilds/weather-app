@@ -64,8 +64,11 @@ input {
 }
 
 #indexHolder {
+    position: relative;
     float: left;
+    padding: 0px 10px;
     border-radius: 4px;
+    top: 10px;
 }
 
 .forecastTile {
@@ -81,4 +84,5 @@ input {
 
 #forecastTiles {
     padding: 0px;
+    font-weight: bold;
 }
