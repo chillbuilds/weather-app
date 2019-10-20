@@ -31,13 +31,23 @@
       <div class="row">
         <div class="col-3">
           <h3>Search for a city:</h3>
-          <div class="row">
-            <input id="search" type="text" /><img
+          <div class="userInput row">
+            <input placeholder="city" id="search" type="text" /><img
               id="searchBtn"
               class="icon"
               src="assets/images/search.png"
             />
           </div>
+          <div class="userInput row">
+              <input placeholder="zip code" id="searchZip"
+              oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+              type = "number"
+              maxlength = "5"
+           /><img
+          id="searchBtnZip"
+          class="icon"
+          src="assets/images/search.png"
+        /></div>
           <div id="searchHistory">
             <div class="searchHist" id="hist1"></div>
             <div class="searchHist" id="hist2"></div>
@@ -62,34 +72,34 @@
           <div class="row" id="forecast">
             <div class="col-12" id="forecastTiles">
               <div class="forecastTile" id="day1">
-                <div id="tile1Date"></div>
+                <div class="tileTxt tileHead" id="tile1Date"></div>
                 <div class="tileIcon"><img id="tile1Icon" src=""></div>
-                <div id="tile1temp"></div>
-                <div id="tile1Humidity"></div>
+                <div class="tileTxt" id="tile1Temp"></div>
+                <div class="tileTxt" id="tile1Humidity"></div>
               </div>
               <div class="forecastTile" id="day2">
-                <div id="tile2Date"></div>
+                <div class="tileTxt tileHead" id="tile2Date"></div>
                 <div class="tileIcon"><img id="tile2Icon" src=""></div>
-                <div id="tile2temp"></div>
-                <div id="tile2Humidity"></div>
+                <div class="tileTxt" id="tile2Temp"></div>
+                <div class="tileTxt" id="tile2Humidity"></div>
               </div>
               <div class="forecastTile" id="day3">
-                <div id="tile3Date"></div>
+                <div class="tileTxt tileHead" id="tile3Date"></div>
                 <div class="tileIcon"><img id="tile3Icon" src=""></div>
-                <div id="tile3temp"></div>
-                <div id="tile3Humidity"></div>
+                <div class="tileTxt" id="tile3Temp"></div>
+                <div class="tileTxt" id="tile3Humidity"></div>
               </div>
                 <div class="forecastTile" id="day4">
-                  <div id="tile4Date"></div>
+                  <div class="tileTxt tileHead" id="tile4Date"></div>
                   <div class="tileIcon"><img id="tile4Icon" src=""></div>
-                  <div id="tile4temp"></div>
-                  <div id="tile4Humidity"></div>
+                  <div class="tileTxt" id="tile4Temp"></div>
+                  <div class="tileTxt" id="tile4Humidity"></div>
                 </div>
                 <div class="forecastTile" id="day5">
-                  <div id="tile5Date"></div>
+                  <div class="tileTxt tileHead" id="tile5Date"></div>
                   <div class="tileIcon"><img id="tile5Icon" src=""></div>
-                  <div id="tile5temp"></div>
-                  <div id="tile5Humidity"></div>
+                  <div class="tileTxt" id="tile5Temp"></div>
+                  <div class="tileTxt" id="tile5Humidity"></div>
                 </div>
               </div>
             </div>

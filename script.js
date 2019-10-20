@@ -1,16 +1,13 @@
 var cityInput = JSON.parse(localStorage.getItem("1"));;
+var zipInput = 0;
 var APIKey = "8bebd070f80dace3c5498124f468dc36";
 var lat = 0;
 var lon = 0;
 var x = "";
+var zip = false;
 forecast();
-
-$("#hist1").text(JSON.parse(localStorage.getItem("2")));
-$("#hist2").text(JSON.parse(localStorage.getItem("3")));
-$("#hist3").text(JSON.parse(localStorage.getItem("4")));
-$("#hist4").text(JSON.parse(localStorage.getItem("5")));
-$("#hist5").text(JSON.parse(localStorage.getItem("6")));
-$("#hist6").text(JSON.parse(localStorage.getItem("7")));
+for (i = 1; i < 7; i++){
+  $("#hist"+[i]).text(JSON.parse(localStorage.getItem(i+1)));}
 
 function uvCall() {
   var queryURL =
@@ -43,25 +40,30 @@ function uvCall() {
 }
 
 function forecast(){
-  var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"
+  var queryURL = "";
+  if(zip === true){
+    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+  else
+  {var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
   $.ajax({
     url: queryURL,
-    method: "GET"
+    method: "GET",
   }).then(function(response){
     var str = response.list[0].dt_txt;
     var date = str.split(" ");
     var tempF = Math.round((response.list[0].main.temp * 9) / 5 - 459.67);
+    var str = date[0];
+    var date = str.split("-");
     $("#temp").text("Temp: " + tempF + "°f");
-    $("#cityDisplay").text(cityInput + " " + date[0]);
+    $("#cityDisplay").text(response.city.name + " " + date[1] + "-" + date[2] + "-" + date[0]);
     $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
     $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed.toFixed(1) + " mph");
-
-    lat = response.city.coord.lat.toFixed(2)
-    lon = response.city.coord.lon.toFixed(2)
-    console.log(response);
+    lat = response.city.coord.lat.toFixed(2);
+    lon = response.city.coord.lon.toFixed(2);
     x = response;
     uvCall();
     forecastInjection();
+    
   })
 }
 
@@ -75,18 +77,21 @@ function forecastInjection(){
     $("#tile"+[i]+"Date").text(z[1]+"-"+z[2]+"-"+z[0]);
     var y = "http://openweathermap.org/img/w/" + x.list[conditionArray[i]].weather[0].icon + ".png";
     $("#tile"+[i]+"Icon").attr("src", y);
+    $("#tile"+[i]+"Temp").text("Temp: " + Math.round((x.list[i].main.temp * 9) / 5 - 459.67)+ " °f");
+    $("#tile"+[i]+"Humidity").text("Humidity: "+x.list[i].main.humidity+"%");
   }
 }
 
-$("#searchBtn").on("click", function() {
+function search(){
   var x1 = $("#search").val();
+  if(zip == true){x1 = $("#searchZip").val();}
   var x2 = JSON.parse(localStorage.getItem("2"));
   var x3 = JSON.parse(localStorage.getItem("3"));
   var x4 = JSON.parse(localStorage.getItem("4"));
   var x5 = JSON.parse(localStorage.getItem("5"));
   var x6 = JSON.parse(localStorage.getItem("6"));
   var x7 = JSON.parse(localStorage.getItem("7"));
-  cityInput = x1;
+  cityInput = x1
   localStorage.setItem("1", JSON.stringify(x1));
   localStorage.setItem("2", JSON.stringify(x1));
   localStorage.setItem("3", JSON.stringify(x2));
@@ -101,4 +106,27 @@ $("#searchBtn").on("click", function() {
   $("#hist5").text(x5);
   $("#hist6").text(x6);
   forecast();
+}
+
+$("#searchBtn").on("click", function() {
+  zip = false;
+  search();
 });
+
+$("#searchBtnZip").on("click", function() {
+  zip = true;
+  search();
+});
+
+$(".searchHist").on("click", function(){
+  var y = $(this).text();
+  if(isNaN(y) === true){
+  cityInput = $(this).text();
+  $("#search").val(cityInput);
+  zip = false}else{
+    zipInput = $(this).text();
+    $("#searchZip").val(zipInput);
+    zip = true;
+  }console.log(isNaN(y));
+  search();
+})

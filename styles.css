@@ -86,3 +86,15 @@ input {
     padding: 0px;
     font-weight: bold;
 }
+
+.tileTxt {
+    padding-top: 5px;
+}
+
+.tileHead {
+    font-size: 20px;
+}
+
+.userInput {
+    margin-top: 20px;
+}
