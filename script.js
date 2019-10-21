@@ -12,7 +12,7 @@ for (i = 1; i < 7; i++){
 
 function uvCall() {
   var queryURL =
-    "http://api.openweathermap.org/data/2.5/uvi?lat=" +
+    "https://api.openweathermap.org/data/2.5/uvi?lat=" +
     lat +
     "&lon=" +
     lon +
@@ -43,14 +43,14 @@ function uvCall() {
 function currentStats(){
   var queryURL = "";
   if(zip === true){
-    var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+    var queryURL = "https://api.openweathermap.org/data/2.5/weather?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
   else
-  {var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+  {var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
   $.ajax({
     url: queryURL,
     method: "GET",
   }).then(function(response){
-    var y = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+    var y = "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
     $("#mainIcon").attr("src", y);
     var tempF = Math.round((response.main.temp * 9) / 5 - 459.67);
     $("#temp").text("Temp: " + tempF + "°f");
@@ -64,9 +64,9 @@ function forecast(){
   currentStats();
   var queryURL = "";
   if(zip === true){
-    var queryURL = "http://api.openweathermap.org/data/2.5/forecast?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+    var queryURL = "https://api.openweathermap.org/data/2.5/forecast?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
   else
-  {var queryURL = "http://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+  {var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
   $.ajax({
     url: queryURL,
     method: "GET",
@@ -82,7 +82,7 @@ function forecast(){
     
   })
   .fail(function(){
-    $("#cityDisplay").text("Location Not Found");
+    $("#cityDisplay").text("Please Enter City");
   })
 }
 
@@ -94,7 +94,7 @@ function forecastInjection(){
     var str = y[0];
     var z = str.split("-");
     $("#tile"+[i]+"Date").text(z[1]+"-"+z[2]+"-"+z[0]);
-    var y = "http://openweathermap.org/img/w/" + x.list[conditionArray[i]].weather[0].icon + ".png";
+    var y = "https://openweathermap.org/img/w/" + x.list[conditionArray[i]].weather[0].icon + ".png";
     $("#tile"+[i]+"Icon").attr("src", y);
     $("#tile"+[i]+"Temp").text("Temp: " + Math.round((x.list[i].main.temp * 9) / 5 - 459.67)+ " °f");
     $("#tile"+[i]+"Humidity").text("Humidity: "+x.list[i].main.humidity+"%");
