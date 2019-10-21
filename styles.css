@@ -21,6 +21,7 @@ header {
     border-radius: 6px;
 }
 
+
 input {
     border-radius: 6px;
 }
@@ -97,4 +98,9 @@ input {
 
 .userInput {
     margin-top: 20px;
+}
+
+#mainIcon {
+    background: royalblue;
+    border-radius: 6px;
 }

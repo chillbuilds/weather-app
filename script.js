@@ -4,6 +4,7 @@ var APIKey = "8bebd070f80dace3c5498124f468dc36";
 var lat = 0;
 var lon = 0;
 var x = "";
+var n = "";
 var zip = false;
 forecast();
 for (i = 1; i < 7; i++){
@@ -39,7 +40,28 @@ function uvCall() {
   });
 }
 
+function currentStats(){
+  var queryURL = "";
+  if(zip === true){
+    var queryURL = "http://api.openweathermap.org/data/2.5/weather?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+  else
+  {var queryURL = "http://api.openweathermap.org/data/2.5/weather?q=" + cityInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
+  $.ajax({
+    url: queryURL,
+    method: "GET",
+  }).then(function(response){
+    var y = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+    $("#mainIcon").attr("src", y);
+    var tempF = Math.round((response.main.temp * 9) / 5 - 459.67);
+    $("#temp").text("Temp: " + tempF + "°f");
+    $("#humidity").text("Humidity: " + response.main.humidity + "%");
+    $("#windSpeed").text("Wind Speed: " + response.wind.speed.toFixed(1) + " mph");
+    n = response;
+    console.log(n);
+})}
+
 function forecast(){
+  currentStats();
   var queryURL = "";
   if(zip === true){
     var queryURL = "http://api.openweathermap.org/data/2.5/forecast?zip=" + zipInput + ",us&APPID=8bebd070f80dace3c5498124f468dc36"}
@@ -49,21 +71,18 @@ function forecast(){
     url: queryURL,
     method: "GET",
   }).then(function(response){
-    var str = response.list[0].dt_txt;
-    var date = str.split(" ");
-    var tempF = Math.round((response.list[0].main.temp * 9) / 5 - 459.67);
-    var str = date[0];
-    var date = str.split("-");
-    $("#temp").text("Temp: " + tempF + "°f");
-    $("#cityDisplay").text(response.city.name + " " + date[1] + "-" + date[2] + "-" + date[0]);
-    $("#humidity").text("Humidity: " + response.list[0].main.humidity + "%");
-    $("#windSpeed").text("Wind Speed: " + response.list[0].wind.speed.toFixed(1) + " mph");
+    var today = new Date();
+    var date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+    $("#cityDisplay").text(response.city.name + " " + date);
     lat = response.city.coord.lat.toFixed(2);
     lon = response.city.coord.lon.toFixed(2);
     x = response;
     uvCall();
     forecastInjection();
     
+  })
+  .fail(function(){
+    $("#cityDisplay").text("Location Not Found");
   })
 }
 
@@ -115,6 +134,7 @@ $("#searchBtn").on("click", function() {
 
 $("#searchBtnZip").on("click", function() {
   zip = true;
+  zipInput = $("#searchZip").val();
   search();
 });
 
